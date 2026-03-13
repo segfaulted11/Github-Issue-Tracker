@@ -80,14 +80,15 @@ let loadAllData = ()=>{
 }
 //display1 function 
 let displayAll = (object)=>{
-    let getArray = object.data
+    let getArray = object.data;
 
     content.innerHTML = "";
     let count = 0;
 
     getArray.forEach(eachObject => {
 
-        count++;
+       count++;
+
        // border based on status
        let borderClass = "";
 
@@ -292,3 +293,28 @@ btn3.addEventListener("click", function () {
 
     loadClosedData();
 });
+
+// -----------------------------
+
+
+// implementing search functionality
+
+let searchBtn = document.getElementById("searchBtn")
+searchBtn.addEventListener("click",()=>{
+    let searchInput = document.getElementById("searchInput")
+    let searchInputValue = searchInput.value.trim();
+
+//load data
+
+spinner(true);
+
+let loadSearch = ()=>{fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchInputValue}`)
+.then(response=>response.json())
+.then(json=>displayAll(json))
+}
+//display it
+loadSearch();
+
+})
+
+// -----------------------------
