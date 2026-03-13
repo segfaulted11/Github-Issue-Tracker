@@ -8,8 +8,26 @@ let issueDetailContainer = document.getElementById("issueDetailContainer");
 
 //--------------------------------
 
-//loading the deatils of data for each issue
+//spinner function
+let spinner = (status)=>{
+    if(status===true){
+    document.getElementById("spinner").classList.remove("hidden")
+    document.getElementById("main-content").classList.add("hidden")
+    }else{
+    document.getElementById("main-content").classList.remove("hidden")
+    document.getElementById("spinner").classList.add("hidden")
+    }
+
+} 
+
+// --------------------------------
+
+//loading the deatils of the data for each issue
 let loadIssueDetail = (id)=>{
+
+    //when data starts loading
+    spinner(true);
+    
     let url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
     fetch(url)
     .then(response=>response.json())
@@ -43,6 +61,8 @@ Priority: <button class="btn btn-primary">${getDataObject.priority}</button>
 let getModal = document.getElementById("issue_modal");
 getModal.showModal();
 
+//when dat loading is finished
+spinner(false);
 }
 
 //---------------------------------
@@ -51,6 +71,9 @@ getModal.showModal();
 
 //fetch 
 let loadAllData = ()=>{
+
+    spinner(true);
+
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     .then(response=>response.json())
     .then(json=>displayAll(json))
@@ -104,7 +127,9 @@ let displayAll = (object)=>{
         </div>
         `;
     });
-    issueNumber.innerText = `${count} Issues`
+    issueNumber.innerText = `${count} Issues`;
+
+        spinner(false);
 }
 //-------------------------------------
 
@@ -117,6 +142,9 @@ loadAllData();
 
 // fetch
 let loadOpenData = () => {
+
+ spinner(true);
+
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     .then(response => response.json())
     .then(json => {
@@ -166,7 +194,9 @@ let display2 = (object) => {
         `
     }
   });
-    issueNumber.innerText = `${count} Issues`
+    issueNumber.innerText = `${count} Issues`;
+
+    spinner(false);
 }
 
 // ---------------------------------------
@@ -176,6 +206,9 @@ let display2 = (object) => {
 
 // fetch
 let loadClosedData = () => {
+
+    spinner(true);
+
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     .then(response => response.json())
     .then(json => {
@@ -224,7 +257,9 @@ let display3 = (object) => {
         `
     }
   });
-    issueNumber.innerText = `${count} Issues`
+    issueNumber.innerText = `${count} Issues`;
+
+    spinner(false);
 }
 // ------------------------------------------
 
