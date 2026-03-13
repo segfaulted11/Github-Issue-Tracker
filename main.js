@@ -5,6 +5,7 @@ let btn3 = document.getElementById("btn-3");
 let content = document.getElementById("main-content");
 let issueNumber = document.getElementById("issue");
 let issueDetailContainer = document.getElementById("issueDetailContainer");
+let searchBtn = document.getElementById("searchBtn");
 
 //--------------------------------
 
@@ -110,19 +111,19 @@ let displayAll = (object)=>{
 
         // create buttons for each label
         let labelButtons = eachObject.labels
-            .map(label => `<button class="btn btn-primary mr-2">${label}</button>`)
+            .map(label => `<button class="btn btn-error mr-2">${label}</button>`)
             .join("");
 
         content.innerHTML +=  `
         <div class="bg-base-100 shadow p-3 h-85 rounded ${borderClass}" onclick="loadIssueDetail(${eachObject.id})">
         <div class="flex justify-between">
             ${priorityImg}
-            <button class="btn bg-teal-300">${eachObject.priority}</button>
+            <button class="btn btn-primary">${eachObject.priority}</button>
             </div>
             <h3 class="font-bold">${eachObject.title}</h3>
-            <h3 class="font-bold opacity-75">${eachObject.description}</h3>
+            <h3 class="font-bold opacity-75 mb-3">${eachObject.description}</h3>
             ${labelButtons}
-            <hr>
+            <hr class="mt-3">
             <p>${eachObject.author}</p>
             <p>${new Date(eachObject.createdAt).toLocaleDateString()}</p>
         </div>
@@ -167,7 +168,7 @@ let display2 = (object) => {
 
         // create buttons for each label
         let labelButtons = eachObject.labels
-            .map(label => `<button class="btn btn-primary mr-2">${label}</button>`)
+            .map(label => `<button class="btn btn-error mr-2">${label}</button>`)
             .join("");
         
         // image based on priority
@@ -183,7 +184,7 @@ let display2 = (object) => {
         <div class="bg-base-100 shadow p-3 h-85 rounded border-t-4 border-green-500" onclick="loadIssueDetail(${eachObject.id})">
         <div class="flex justify-between">
             ${priorityImg}
-            <button class="btn bg-teal-300">${eachObject.priority}</button>
+            <button class="btn btn-primary">${eachObject.priority}</button>
             </div>
             <h3 class="font-bold">${eachObject.title}</h3>
             <h3 class="font-bold opacity-75">${eachObject.description}</h3>
@@ -230,7 +231,7 @@ let display3 = (object) => {
         
         // create buttons for each label
         let labelButtons = eachObject.labels
-            .map(label => `<button class="btn btn-primary mr-2">${label}</button>`)
+            .map(label => `<button class="btn btn-error mr-2">${label}</button>`)
             .join("");
         
         // image based on priority
@@ -246,7 +247,7 @@ let display3 = (object) => {
         <div class="bg-base-100 shadow p-3 h-85 rounded border-t-4 border-purple-500" onclick="loadIssueDetail(${eachObject.id})">
         <div class="flex justify-between">
             ${priorityImg}
-            <button class="btn bg-teal-300">${eachObject.priority}</button>
+            <button class="btn btn-primary">${eachObject.priority}</button>
             </div>
             <h3 class="font-bold">${eachObject.title}</h3>
             <h3 class="font-bold opacity-75">${eachObject.description}</h3>
@@ -299,7 +300,7 @@ btn3.addEventListener("click", function () {
 
 // implementing search functionality
 
-let searchBtn = document.getElementById("searchBtn")
+
 searchBtn.addEventListener("click",()=>{
     let searchInput = document.getElementById("searchInput")
     let searchInputValue = searchInput.value.trim();
